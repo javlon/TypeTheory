@@ -1,4 +1,4 @@
-// Generated from /home/javlon/code/java/TT (another copy)/Grammar.g4 by ANTLR 4.5
+// Generated from /home/javlon/code/java/TypeTheory/HW8/Grammar.g4 by ANTLR 4.5
 
     import Base.*;
 

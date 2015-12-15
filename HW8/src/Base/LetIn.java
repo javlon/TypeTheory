@@ -18,6 +18,17 @@ public class LetIn implements Expression {
         this.expression = expression;
     }
 
+    public Variable getVar() {
+        return var;
+    }
+
+    public Expression getSub() {
+        return sub;
+    }
+
+    public Expression getExpression() {
+        return expression;
+    }
 
     @Override
     public String toString() {

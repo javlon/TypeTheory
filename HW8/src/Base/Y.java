@@ -23,7 +23,9 @@ public class Y implements SpecialFrom {
 
     @Override
     public String toString() {
-        return "(Y " + f + ")";
+        if (hasArgs == 1)
+            return "(Y " + f + ")";
+        return "Y";
     }
 
     @Override

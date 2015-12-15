@@ -15,6 +15,14 @@ public class Application implements Expression {
         this.right = right;
     }
 
+    public Expression getLeft() {
+        return left;
+    }
+
+    public Expression getRight() {
+        return right;
+    }
+
     @Override
     public String toString() {
         return "(" + left + " " + right + ")";

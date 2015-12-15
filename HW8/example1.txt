@@ -1,1 +1,1 @@
-PrR ((Y (\f.\n.((If (Eq 0 n)) <1, 1>) ((\x. <(Plus (PrL x)) (PrR x), (PrL x)>) (f (Minus n 1))))) 91)
+PrR (Y \f.\n.((If (Eq 0) n) <1, 1>) (\x. <(Plus PrL x) PrR x,PrL x>) f (Minus n) 1) 91

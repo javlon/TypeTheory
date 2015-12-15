@@ -24,9 +24,15 @@ public class Pr implements SpecialFrom {
         hasArgs = 1;
     }
 
+    public boolean isLeft() {
+        return isLeft;
+    }
+
     @Override
     public String toString() {
-        return "(Pr" + (isLeft ? "L " : "R ") + pair + ")";
+        if (hasArgs == 1)
+            return "(Pr" + (isLeft ? "L " : "R ") + pair + ")";
+        return "(Pr" + (isLeft ? "L " : "R ");
     }
 
     @Override

@@ -23,8 +23,8 @@ abstraction returns[Expression exp]
     ;
 
 application returns[Expression exp]
-    :   a1 = application term {
-            $exp = new Application($a1.exp, $term.exp);
+    :   term a1 = abstraction {
+            $exp = new Application($term.exp, $a1.exp);
         }
     |   term{
             $exp = $term.exp;
