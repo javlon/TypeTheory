@@ -1,4 +1,4 @@
-package Base;
+package base;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,40 +6,49 @@ import java.util.Set;
 /**
  * Created by javlon on 10.12.15.
  */
-public class Eq implements SpecialFrom {
-
+public class Minus implements SpecialFrom {
     private final int hasArgs;
 
     private Expression left;
     private Expression right;
 
-    public Eq(Expression left, Expression right) {
+    public Minus(Expression left, Expression right) {
         hasArgs = 2;
         this.left = left;
         this.right = right;
     }
 
-    public Eq(Expression left) {
+    public Minus(Expression left) {
         hasArgs = 1;
         this.left = left;
         right = null;
     }
 
-    public Eq() {
+    public Minus() {
         hasArgs = 0;
         left = null;
         right = null;
     }
 
     @Override
+    public String toString() {
+        String s = "Minus";
+        if (hasArgs >= 1)
+            s += " " + left;
+        if (hasArgs >= 2)
+            s += " " + right;
+        return "(" + s + ")";
+    }
+
+    @Override
     public Expression takeArg(Object o) {
         if (hasArgs == 0) {
             if (o instanceof Expression)
-                return new Eq((Expression) o);
+                return new Minus((Expression) o);
             throw new IllegalArgumentException("Expected Expression: " + o);
         } else if (hasArgs == 1) {
             if (o instanceof Expression)
-                return new Eq(left, (Expression) o);
+                return new Minus(left, (Expression) o);
             throw new IllegalArgumentException("Expected Expression: " + o);
         }
         throw new IllegalArgumentException();
@@ -61,10 +70,8 @@ public class Eq implements SpecialFrom {
             return this;
         left = left.reduction(false);
         right = right.reduction(false);
-
-        if (left instanceof SNumber && right instanceof SNumber) {
-            return ((SNumber) left).get() == ((SNumber) right).get() ? new SBoolean(true) : new SBoolean(false);
-        }
+        if (left instanceof SNumber && right instanceof SNumber)
+            return new SNumber(((SNumber) left).get() - ((SNumber) right).get());
         throw new IllegalArgumentException("Expected SNumbers: \n" + left + "\n" + right);
     }
 
@@ -74,7 +81,7 @@ public class Eq implements SpecialFrom {
             return this;
         } else if (hasArgs == 1) {
             if (left.freeVar().contains(var))
-                return new Eq(left.substitution(var, exp));
+                return new Minus(left.substitution(var, exp));
             return this;
         }
         boolean bl = left.freeVar().contains(var);
@@ -86,17 +93,7 @@ public class Eq implements SpecialFrom {
         if (br)
             r = right.substitution(var, exp);
         if (bl || br)
-            return new Eq(l, r);
+            return new Minus(l, r);
         return this;
-    }
-
-    @Override
-    public String toString() {
-        String s = "Eq";
-        if (hasArgs >= 1)
-            s += " " + left;
-        if (hasArgs >= 2)
-            s += " " + right;
-        return "(" + s + ")";
     }
 }

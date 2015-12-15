@@ -1,6 +1,6 @@
 // Generated from /home/javlon/code/java/TypeTheory/HW8/Grammar.g4 by ANTLR 4.5
 
-    import Base.*;
+    import base.*;
 
 
 import org.antlr.v4.runtime.ParserRuleContext;

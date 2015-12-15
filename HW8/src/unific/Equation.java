@@ -1,7 +1,7 @@
-package Unific;
+package unific;
 
-import Types.Type;
-import Types.TypeVariable;
+import types.Type;
+import types.TypeVariable;
 
 import java.util.List;
 import java.util.Set;

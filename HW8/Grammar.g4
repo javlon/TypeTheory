@@ -1,7 +1,7 @@
 grammar Grammar;
 
 @header {
-    import Base.*;
+    import base.*;
 }
 
 expression returns[Expression exp]

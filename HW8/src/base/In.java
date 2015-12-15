@@ -1,4 +1,4 @@
-package Base;
+package base;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,40 +6,56 @@ import java.util.Set;
 /**
  * Created by javlon on 10.12.15.
  */
-public class Pr implements SpecialFrom {
+public class In implements SpecialFrom {
     final private int hasArgs;
 
     final private boolean isLeft;
-    private Expression pair;
 
-    public Pr(boolean isLeft) {
+    final private Expression expression;
+
+    public In(boolean isLeft, Expression expression) {
         this.isLeft = isLeft;
-        hasArgs = 0;
-        pair = null;
+        this.expression = expression;
+        hasArgs = 1;
     }
 
-    public Pr(boolean isLeft, Expression pair) {
+    public In(boolean isLeft) {
+        hasArgs = 0;
         this.isLeft = isLeft;
-        this.pair = pair;
-        hasArgs = 1;
+        expression = null;
+    }
+
+    public Expression get() {
+        return expression;
     }
 
     public boolean isLeft() {
         return isLeft;
     }
 
+    public boolean isFull() {
+        return hasArgs != 0;
+    }
+
     @Override
     public String toString() {
-        if (hasArgs == 1)
-            return "(Pr" + (isLeft ? "L " : "R ") + pair + ")";
-        return "(Pr" + (isLeft ? "L " : "R ");
+        String s = "In";
+        if (isLeft) {
+            s += "L ";
+        } else {
+            s += "R ";
+        }
+        if (hasArgs != 0) {
+            s += expression;
+        }
+        return s;
     }
 
     @Override
     public Expression takeArg(Object o) {
         if (hasArgs == 0) {
             if (o instanceof Expression)
-                return new Pr(isLeft, (Expression) o);
+                return new In(isLeft, (Expression) o);
             throw new IllegalArgumentException("Expected Expression: " + o);
         }
         throw new IllegalArgumentException();
@@ -49,7 +65,7 @@ public class Pr implements SpecialFrom {
     public Set<Variable> freeVar() {
         Set<Variable> set = new HashSet<>();
         if (hasArgs > 0)
-            set.addAll(pair.freeVar());
+            set.addAll(expression.freeVar());
         return set;
     }
 
@@ -57,18 +73,15 @@ public class Pr implements SpecialFrom {
     public Expression reduction(boolean needAbstraction) {
         if (hasArgs == 0)
             return this;
-        pair = pair.reduction(false);
-        if (pair instanceof SPair)
-            return isLeft ? ((SPair) pair).getLeft().reduction(needAbstraction) : ((SPair) pair).getRight().reduction(needAbstraction);
-        throw new IllegalArgumentException("Expected SPair: " + pair);
+        throw new IllegalArgumentException("why?");
     }
 
     @Override
     public Expression substitution(Variable var, Expression exp) {
         if (hasArgs == 0)
             return this;
-        if (pair.freeVar().contains(var))
-            return new Pr(isLeft, pair.substitution(var, exp));
+        if (expression.freeVar().contains(var))
+            return new In(isLeft, expression.substitution(var, exp));
         return this;
     }
 }

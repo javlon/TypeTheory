@@ -1,6 +1,6 @@
-import Base.Expression;
-import Types.Type;
-import Types.TypeVariable;
+import base.Expression;
+import types.Type;
+import types.TypeVariable;
 import javafx.util.Pair;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;

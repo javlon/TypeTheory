@@ -1,4 +1,4 @@
-package Base;
+package base;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,18 +6,14 @@ import java.util.Set;
 /**
  * Created by javlon on 10.12.15.
  */
-public class SNumber implements Expression {
-    private long a;
+public class SBoolean implements Expression {
+    private boolean a;
 
-    public SNumber(long a) {
+    public SBoolean(boolean a) {
         this.a = a;
     }
 
-    public SNumber(String a) {
-        this.a = Long.parseLong(a);
-    }
-
-    public long get() {
+    public boolean get() {
         return a;
     }
 

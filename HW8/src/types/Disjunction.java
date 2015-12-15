@@ -1,6 +1,6 @@
-package Types;
+package types;
 
-import Unific.Equation;
+import unific.Equation;
 
 import java.util.*;
 

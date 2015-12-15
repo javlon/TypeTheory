@@ -1,6 +1,6 @@
-package Unific;
+package unific;
 
-import Types.TypeVariable;
+import types.TypeVariable;
 
 import java.util.ArrayList;
 import java.util.List;

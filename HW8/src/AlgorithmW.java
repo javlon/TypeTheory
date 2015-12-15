@@ -1,8 +1,8 @@
-import Base.*;
-import Types.*;
-import Unific.Equation;
-import Unific.Solving;
+import base.*;
 import javafx.util.Pair;
+import types.*;
+import unific.Equation;
+import unific.Solving;
 
 import java.util.ArrayList;
 import java.util.HashMap;

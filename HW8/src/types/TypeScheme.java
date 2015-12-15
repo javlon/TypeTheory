@@ -1,6 +1,6 @@
-package Types;
+package types;
 
-import Base.Variable;
+import base.Variable;
 
 import java.util.*;
 
