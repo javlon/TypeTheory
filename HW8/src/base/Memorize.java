@@ -9,6 +9,11 @@ public class Memorize implements Expression {
 
     private Expression expression;
 
+    @Override
+    public String toString() {
+        return expression.toString();
+    }
+
     public Memorize(Expression expression) {
         this.expression = expression;
     }
@@ -21,9 +26,6 @@ public class Memorize implements Expression {
 
     @Override
     public Expression reduction(boolean needAbstraction) {
-        if(expression instanceof Abstraction && needAbstraction){
-            return expression;
-        }
         expression = expression.reduction(needAbstraction);
         while (expression instanceof Memorize)
             expression = ((Memorize) expression).expression;
