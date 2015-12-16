@@ -42,7 +42,7 @@ public class Application implements Expression {
         Expression r = right;
         if (l instanceof Abstraction)
             return ((Abstraction) l).getExpression().substitution(((Abstraction) l).getVar(), new Memorize(r)).reduction(needAbstraction);
-        left = left.reduction(true);
+        left = left.reduction(false);
         l = left;
         if (l instanceof Abstraction)
             return ((Abstraction) l).getExpression().substitution(((Abstraction) l).getVar(), new Memorize(r)).reduction(needAbstraction);
